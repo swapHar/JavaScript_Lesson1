@@ -127,3 +127,133 @@ console.log(`First Name: ${mike.firstName}`);
 
 let mikestr = `${mike.firstName} ${mike.lastName}, age: ${mike.age}`;
 console.log(mikestr);
+
+let mikeAdvanced = {
+    firstName: 'Mike',
+    lastName:'Bäck',
+    age: 38,
+    hobbies: ['music','Programming','reading','games']
+};
+
+console.log(mikeAdvanced);
+//console.log(JSON.stringify(mikeAdvanced)); // JSON
+let mikeJSON = JSON.stringify(mikeAdvanced); // Object to JSON
+console.log(mikeJSON);
+console.log(JSON.parse(mikeJSON)); // back to object
+
+// Loop over object
+for(let propertyName in mikeAdvanced){      // 'of'  is for arrays and 'in' is for objects 
+    let propertyValue = mikeAdvanced[propertyName];
+    console.log(propertyName,propertyValue);
+}
+
+// Loop through object and array inside of object
+for(let propertyName in mikeAdvanced){               // Loop over object
+    let propertyValue = mikeAdvanced[propertyName];  // Get value from key
+    if(Array.isArray(propertyValue) === true) {      // Check if array?
+        for(let hobby of propertyValue){             // Loop over array
+            console.log("Hobby: " + hobby);
+        }
+    } else {
+        console.log(propertyName + " : " + propertyValue);
+    }
+}
+
+// connection to HTML
+// Ask JS to create a new element
+let myDiv = document.createElement('div');
+// add some HTML
+myDiv.innerHTML = `
+     <h1>Hello from JS!</h1>
+     <p> This text is from JavaScript, my age is ${mike.age} </p>
+`;
+
+// Grab the body tag
+let body = document.querySelector('body');
+
+// Add the div to the HTML
+body.append(myDiv);
+
+// Another way to add data
+let myBands = [
+    {
+        name: 'The Beatles',
+        genre: 'pop'
+    },
+    {
+        name: 'The Rolling Stones',
+        genre: 'Rock'
+    }
+];
+
+// Grab the bands div
+let bandsDiv = document.querySelector('#bands');
+for(let band of myBands){
+    bandsDiv.innerHTML += `
+         <div class="band">
+         <h2>${band.name}</h2>
+         <p>Genre: ${band.genre}</p>
+         </div>
+    `;
+}
+
+// Functions
+function sayHello() {
+    console.log('Hello');
+}
+
+const sayHello2 = () => {
+    console.log('Hello 2');
+}
+
+sayHello();
+sayHello2();
+
+// Diffrent ways of Declaring same function
+
+// Function Declaration
+function add(a, b){
+    return a + b;
+}
+
+// arrow funtion
+const add2 = (a, b) => {
+    return a + b;
+}
+
+// function expression
+const add3 = function(a, b) {
+    return a + b;
+}
+
+// Arrow function with implicit return
+const add4 = (a, b) => a + b;
+
+// Arrow function with implicit return and one parameter
+const add5 = a => a + 5;
+
+
+console.log(add(1, 2));
+console.log(add2(1, 2));
+console.log(add3(1, 2));
+console.log(add4(1, 2));
+console.log(add5(1));    // select the row then press alt + shift & down arrow to copy row
+
+// classes
+class Person{
+    constructor(name, age, hobby) {
+        this.name = name;
+        this.age = age;
+        this.hobby = hobby;
+    }
+
+    greetings() {
+        console.log(`Hi, my name is ${this.name} and I am ${this.age}`);
+        console.log(`I enjoy: ` + this.hobby);
+    }
+}
+
+const mikeClass = new Person('Swapnal', 43, 'Craft');
+mikeClass.greetings();
+
+console.log(mikeClass.hobby);
